@@ -186,7 +186,7 @@ bundle install
 
 
 
-## Step 5 - Run Script
+## Step 6 - Run Script
 
 On a Unix-based machine, you'll need to issue a command like the following to run the script:
 
