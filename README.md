@@ -143,8 +143,7 @@ Then, fill in the appropriate values for the following:
 
 Outside of **threads**, the values for all of the above should be obvious.  
 
-If you have multiple processors or cores, you can increase **threads** number to increase the speed at which the values are scraped from the case report forms.
-
+If you have multiple processors or cores, you can increase **threads** number to increase the speed at which the values are scraped from the case report forms.  If you have a single processor or only a single core, decrease the number of threads to something lower.
 
 Project Analysis Template:
 ```
