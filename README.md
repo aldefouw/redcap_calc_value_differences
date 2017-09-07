@@ -192,3 +192,19 @@ On a Unix-based machine, you'll need to issue a command like the following to ru
 ```
 ruby project.rb
 ```
+
+Errors are reported to the bash window.  They are also reported to a CSV file and log files.
+
+
+CSV Errors: 
+
+```
+##THIS_REPOSITORY_FOLDER##/errors/25/errors.csv
+```
+
+Logging: 
+
+```
+##THIS_REPOSITORY_FOLDER##/logs/25/info.log
+##THIS_REPOSITORY_FOLDER##/logs/25/errors.log
+```
