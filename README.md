@@ -21,7 +21,7 @@ Differences arise between the two for various reasons, **including, but not limi
 
 This library is currently only tested against REDCap 7.1.2.  This is the only version that will work for analysis out of the box.  
 
-However, it was designed to be easily extensible to support additonal versions in the future.
+However, it was designed to be easily extensible to support additional versions in the future.
 
 To add compatibility to another version of REDCap, you'll need to create a version file within the following folder:
 
@@ -46,7 +46,7 @@ Please note that everything within the library needs to exist within folders lab
 
 The script requires a **Super Administrator** account to access REDCap for analysis purposes.  If you do not know how to create this account - or can't - then this script probably isn't for you.
 
-Because of the sensisitivity of user credentials, it is recommended that you create a service account for this script specifically.
+Because of the sensitivity of user credentials, it is recommended that you create a service account for this script specifically.
 
 
 Create a **config.yml** file at the following path:
@@ -160,7 +160,7 @@ detector.run
 
 ### Step 5 - Install Gems
 
-**Imporant Note:** It is recommended to use RVM or equivalent to manage your Ruby version.  Installation is outside of the scope of this guide.  For information about RVM, please visit https://rvm.io/.
+**Important Note:** It is recommended to use RVM or equivalent to manage your Ruby version.  Installation is outside of the scope of this guide.  For information about RVM, please visit https://rvm.io/.
 
 
 To install the gems, first download bundler.
