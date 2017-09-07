@@ -126,7 +126,7 @@ Put your Events in the following location:
 ```
 
 
-### Step 4 - Create Your Project Script
+## Step 4 - Create Your Project Script
 
 To run the analysis on your project, you'll need to create a file to instantiate the DifferenceDetector.
 
@@ -166,7 +166,7 @@ detector = DifferenceDetector.new(redcap_url: url,
 detector.run
 ```
 
-### Step 5 - Install Gems
+## Step 5 - Install Gems
 
 **Important Note:** It is recommended to use RVM or equivalent to manage your Ruby version.  Installation is outside of the scope of this guide.  For information about RVM, please visit https://rvm.io/.
 
@@ -186,7 +186,7 @@ bundle install
 
 
 
-### Step 5 - Run Script
+## Step 5 - Run Script
 
 On a Unix-based machine, you'll need to issue a command like the following to run the script:
 
