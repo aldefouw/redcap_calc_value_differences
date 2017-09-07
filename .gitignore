@@ -1,0 +1,6 @@
+*.idea
+project_exports/*/*.csv
+errors
+logs
+config/config.yml
+/*.rb
