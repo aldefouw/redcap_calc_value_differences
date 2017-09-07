@@ -2,7 +2,7 @@
 
 This repository is a Ruby library intended to assist you in identifying differences between values in Case Report Form versus Data Exports in a particular project.
 
-**Please note that this tool identifies problems with calculated values differently from REDCap's "Find Calculation Errors in Projects in Projects" tool or running "Rule H" in Data Quality.**
+**Please note that this tool identifies problems with calculated values differently from REDCap's "Find Calculation Errors in Projects" tool or running "Rule H" in Data Quality.**
 
 This tool scrapes data from the live Case Report Form and compares it against an export file that you provide.
 
@@ -15,6 +15,14 @@ Differences arise between the two for various reasons, **including, but not limi
 
 - Bugs from previous versions of REDCap saved incorrect / inaccurate values
 - Inherent challenges with saving values of date-dependent calculations
+
+## Why not use Rule H or "Find Calculation Errors in Projects" tool?
+
+As a first line of defense, they are good tools.  
+
+But there were some projects at our institution that had calculated value errors that were not caught by either tool.  
+
+This tool catches every instance where there is a discrepancy between the Case Report Form and the Exported Data.
 
 
 ## Current Compatibility
