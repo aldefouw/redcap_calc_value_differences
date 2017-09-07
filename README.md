@@ -21,7 +21,7 @@ Differences arise between the two for various reasons, **including, but not limi
 # Example Usage
 
 
-Plesae note that everything within the library needs to exist within folders labeled with the project ID that you are analyzing. 
+Please note that everything within the library needs to exist within folders labeled with the project ID that you are analyzing. 
 
 
 ## Step 1 - Configure REDCap User
@@ -89,7 +89,7 @@ Put your Data Dictionary in the following location:
 
 ### Download Events ###
 
-**If you are working with a longitudinal project, you'll need to download your Events.**
+**If you are working with a longitudinal project, you'll need to download your Events.**  This file is not necessary for a standard REDCap project.
 
 Download your Events from the **Define my Event** tab.
 
