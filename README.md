@@ -19,7 +19,7 @@ Differences arise between the two for various reasons, **including, but not limi
 
 ## Current Compatibility
 
-This library is currently only tested again REDCap 7.1.2.  
+This library is currently only tested against REDCap 7.1.2.  This is the only version that will work for analysis out of the box.  
 
 However, it was designed to be easily extensible to support additonal versions in the future.
 
