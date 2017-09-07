@@ -34,7 +34,7 @@ However, it was designed to be easily extensible to support additional versions 
 To add compatibility to another version of REDCap, you'll need to create a version file within the following folder:
 
 ```
-/library/redcap_versions/
+##THIS_REPOSITORY_FOLDER##/library/redcap_versions/
 ```
 
 For REDCap 7.1.2, the file is called redcap_712.rb and the class that is instantiated is Redcap712.  
@@ -59,7 +59,7 @@ Because of the sensitivity of user credentials, it is recommended that you creat
 
 Create a **config.yml** file at the following path:
 ```
-/config/config.yml
+##THIS_REPOSITORY_FOLDER##/config/config.yml
 ```
 
 A template is provided for you to get started in the **config.yml.example** file.  
@@ -83,7 +83,7 @@ Create a project folder in the **/project_exports**/ folder with the same ID as 
 For our example, we'll use project ID 25.
 
 ```
-/project_exports/25/
+##THIS_REPOSITORY_FOLDER##/project_exports/25/
 ```
 
 ## Step 3 - Add Data, Data Dictionary, Event Forms
@@ -98,7 +98,7 @@ It is **extremely** important to use the **raw data** data export.  **The script
 Put your Data in the following location: 
 
 ```
-/project_exports/25/data.csv
+##THIS_REPOSITORY_FOLDER##/project_exports/25/data.csv
 ```
 
 ### Download Data Dictionary ###
@@ -108,7 +108,7 @@ Download your complete Data Dictionary for the project.
 Put your Data Dictionary in the following location: 
 
 ```
-/project_exports/25/data-dictionary.csv
+##THIS_REPOSITORY_FOLDER##/project_exports/25/data-dictionary.csv
 ```
 
 
@@ -122,7 +122,7 @@ Download your Events from the **Define my Event** tab.
 Put your Events in the following location: 
 
 ```
-/project_exports/25/event-forms.csv
+##THIS_REPOSITORY_FOLDER##/project_exports/25/event-forms.csv
 ```
 
 
