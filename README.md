@@ -17,6 +17,24 @@ Differences arise between the two for various reasons, **including, but not limi
 - Inherent challenges with saving values of date-dependent calculations
 
 
+## Current Compatibility
+
+This library is currently only tested again REDCap 7.1.2.  
+
+However, it was designed to be easily extensible to support additonal versions in the future.
+
+To add compatibility to another version of REDCap, you'll need to create a version file within the following folder:
+
+```
+/library/redcap_versions/
+```
+
+For REDCap 7.1.2, the file is called redcap_712.rb and the class that is instantiated is Redcap712.  
+
+To add compatibility for a different version, you'll need to create a file respective to the desired version and adjust the methods to parse the table data correctly.
+
+Depending upon the version, it might be the case that no changes are necessary.  If you are interested in helping with other versions, please contact aldefouw@medicine.wisc.edu or submit a pull request.
+
 
 # Example Usage
 
