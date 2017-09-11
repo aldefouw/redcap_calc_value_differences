@@ -87,7 +87,9 @@ https://rvm.io/
 
 ## Step 1 - Configure REDCap User
 
-The script requires a **Super Administrator** account to access REDCap for analysis purposes.  If you do not know how to create this account - or can't - then this script probably isn't for you.
+The script requires a REDCap **Administrator** (super user) account to access REDCap for analysis purposes.  
+
+If you do not know how to create this account - or can't - this script will not work for you.
 
 Because of the sensitivity of user credentials, it is recommended that you create a service account for this script specifically.
 
