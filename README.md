@@ -59,9 +59,31 @@ If you create a parser for a particular version of REDCap that you're on and hav
 https://github.com/aldefouw/redcap_calc_value_differences/blob/master/library/redcap_versions/redcap_712.rb
 
 
+## Technical Requirements ##
+
+**ChomeDriver**
+
+This script uses **ChromeDriver** to scrape each Case Report Form.  Installation of ChromeDriver is necessary, but the steps to install it fall outside the scope of this document.  
+
+For information about how to install ChromeDriver, please visit:
+
+https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver
+
+Because of the hundreds of different setups that ChromeDriver can run on, we cannot guarantee that the ChromeDriver will behave the same as it did on our platform that we developed on.
+
+**Ruby**
+
+Our Gemfile calls for Ruby version 2.3.1, and that is the platform we tested on.
+
+It is recommended to use RVM or equivalent to manage your Ruby version, but installation is outside of the scope of this guide.  
+
+For information about RVM and installing Ruby on your machine, please visit:
+
+https://rvm.io/.
+
+
+
 # Example Usage
-
-
 
 ## Step 1 - Configure REDCap User
 
@@ -227,11 +249,3 @@ Logging:
 ```
 
 
-## Other Requirements ##
-
-This script uses ChromeDriver to achieve the scrapes of each Case Report Form.  Installation of ChromeDriver is necessary but the steps fall outside the scope of this document.  
-
-For information about how to install ChromeDriver, please visit the following page:
-https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver
-
-Because of the hundreds of different setups that ChromeDriver can run on, we cannot guarantee that the ChromeDriver will behave the same as it did on our platform that we developed on.
