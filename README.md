@@ -79,7 +79,7 @@ It is recommended to use RVM or equivalent to manage your Ruby version, but inst
 
 For information about RVM and installing Ruby on your machine, please visit:
 
-https://rvm.io/.
+https://rvm.io/
 
 
 
