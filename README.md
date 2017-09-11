@@ -181,12 +181,12 @@ Then, fill in the appropriate values for the following:
 
 - **project_id** - your Project ID.  Example: 25
 
-- **threads** - the number of threads you want to run.  A higher number will mean you can do more work / analysis at the same time.  If you have multiple processors or cores, you can this number to increase the speed at which the values are scraped from the case report forms.  If you have a single processor or only a single core, decrease the number of threads to something lower. In testing, Parallel didn't allow more threads than our processor(s) can handle.
+- **threads** - the number of threads you want to run.  A higher number will mean you can do more work / analysis at the same time.  If you have multiple processors or cores, you can increase this number to increase the speed at which the values are scraped from the case report forms.  If you have a single processor or only a single core, decrease the number of threads to something lower. In testing, Parallel didn't allow more threads than our processor(s) can handle.
 
 
 Below is example code that you could use to analyze a project with ID of 25 running on version 7.1.2 of REDCap.
 
-Project Analysis Template:
+**Project Analysis Template:**
 ```
 require "#{Dir.getwd}/library/difference_detector"
 
