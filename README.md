@@ -54,7 +54,7 @@ If you create a parser for a particular version of REDCap that you're on and hav
 
 *Note: Adding a parser for a particular version of REDCap isn't as hard as it may sound.  We are using the XML/HTML parser library known as **Nokogiri**.*
 
-*It is lightning-quick and easy to learn.  The source code for version 7.1.2 is here:*
+*It is lightning-quick and easy to learn.  The source code for version 7.1.2 (of our parser code, that is - not Nokogiri) is here:*
 
 https://github.com/aldefouw/redcap_calc_value_differences/blob/master/library/redcap_versions/redcap_712.rb
 
