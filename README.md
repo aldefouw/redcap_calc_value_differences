@@ -27,7 +27,7 @@ This tool catches every instance where there is a discrepancy between the Case R
 
 ## Current Compatibility
 
-This library is currently only tested against REDCap 7.1.2.  This is the only version that will work for analysis out of the box.  
+**This library is currently only tested against REDCap 7.1.2.  This is the only version that will work for analysis out of the box.**
 
 However, it was designed to be easily extensible to support additional versions in the future.
 
@@ -37,11 +37,15 @@ To add compatibility to another version of REDCap, you'll need to create a versi
 ##THIS_REPOSITORY_FOLDER##/library/redcap_versions/
 ```
 
-For REDCap 7.1.2, the file is called redcap_712.rb and the class that is instantiated is Redcap712.  
+For **REDCap 7.1.2**, the file is called **redcap_712.rb** and the class that is instantiated is **Redcap712**.  
 
-To add compatibility for a different version, you'll need to create a file respective to the desired version and adjust the methods to parse the table data correctly.
+**To add compatibility for a different version, you'll need to create a file respective to the desired version and adjust the methods to parse the table data correctly.**  (For instance, for version **7.2.0**, you'd create a module called **Redcap720** and put it inside a file called **redcap_720.rb.**)
 
-Depending upon the version, it might be the case that no changes are necessary.  If you are interested in helping with other versions, please contact aldefouw@medicine.wisc.edu or submit a pull request.
+Depending upon the changes that happened in the version you're on versus 7.1.2, there might not be any code changes necessary at all.  You might be able to drop the code inside the Redcap712 module into your version's module.  It all depends on whether the tables within the **Record Status Dashboard** and **Define Events** page changed at all versus the 7.1.2 version that this script comes bundled with.
+
+I will add additional parsers for additoinal versions of REDCap as I move our institution's REDCap version forward.
+
+If you are interested in creating a parser for a particular version of REDCap that you're on, please contact aldefouw@medicine.wisc.edu or submit a pull request.
 
 
 # Example Usage
@@ -134,16 +138,18 @@ Included for your convenience is a file called "project.rb.example" to get you s
 
 Then, fill in the appropriate values for the following:
 
+- **redcap_url** - the URL for your REDCap instance.  Example: https://your-redcap-server-url.here
 
-- **redcap_url**
-- **redcap_version**
-- **browser_options**
-- **project_id**
-- **threads**
+- **redcap_version** - your REDCap version.  Example: 7.1.2  
 
-Outside of **threads**, the values for all of the above should be obvious.  
+- **browser_options** - a Selenium web driver object.  You can set the array of arguments with the "add_argument" method.  See the example "Project Analysis Template" below.  A common argument you may want to toggle is the "--headless" option.  For instance, you might not want the browser to run in headless mode if you are troubleshooting why a page isn't being scraped.
 
-If you have multiple processors or cores, you can increase **threads** number to increase the speed at which the values are scraped from the case report forms.  If you have a single processor or only a single core, decrease the number of threads to something lower.
+- **project_id** - your Project ID.  Example: 25
+
+- **threads** - the number of threads you want to run.  A higher number will mean you can do more work / analysis at the same time.  If you have multiple processors or cores, you can this number to increase the speed at which the values are scraped from the case report forms.  If you have a single processor or only a single core, decrease the number of threads to something lower. In testing, Parallel didn't allow more threads than our processor(s) can handle.
+
+
+Below is example code that you could use to analyze a project with ID of 25 running on version 7.1.2 of REDCap.
 
 Project Analysis Template:
 ```
