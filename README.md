@@ -46,7 +46,7 @@ For **REDCap 7.1.2**, the file is called **redcap_712.rb** and the module that i
 
 **To add compatibility for a different version, you'll need to create a file respective to the desired version and adjust the methods to parse the table data correctly.**  (For instance, for version **7.2.0**, you'd create a module called **Redcap720** and put it inside a file called **redcap_720.rb.**)
 
-Depending on the changes that happened in the version you're on versus 7.1.2, there might not be any code changes necessary at all.  You might be able to drop the code inside the Redcap712 module into your version's module.  It all depends on whether the tables within the **Record Status Dashboard** and **Define Events** page changed at all versus the 7.1.2 version that this script comes bundled with.
+Depending on the changes that happened in the version you're on versus 7.1.2, there might not be any code changes necessary at all.  You might be able to drop the code within the Redcap712 module directly into your version's module.  It all depends on whether the tables within the **Record Status Dashboard** and **Define Events** page changed at all versus the 7.1.2 version that this script comes bundled with.
 
 If this script is found to be useful, there is a possibility that we will add additional parsers for additional versions of REDCap as our institution's REDCap version moves forward.
 
