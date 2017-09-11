@@ -234,7 +234,7 @@ On a Unix-based machine, you'll need to issue a command like the following to ru
 ruby project.rb
 ```
 
-Errors are reported to the bash window.  They are also reported to a CSV file and log files.
+Errors are reported to the bash / terminal /cmd window.  They are also reported to a CSV file and log files.
 
 
 CSV Errors: 
