@@ -24,6 +24,7 @@ class DifferenceDetector
     @project_id = options[:project_id]
     @path = "project_exports/#{@project_id}"
     @base_dir = Dir.getwd
+    @save_form_on_difference = options[:save_form_on_difference] || false
 
     options = options.merge(path: @path,
                             base_dir: @base_dir)
@@ -48,7 +49,8 @@ class DifferenceDetector
                              browser: @browser,
                              reporting: @reporting,
                              project: @project,
-                             path: @path)
+                             path: @path,
+                             save_form_on_difference: @save_form_on_difference)
 
   end
 

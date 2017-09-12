@@ -9,6 +9,7 @@ class Analyzer
     @path = options[:path]
     @reporting = options[:reporting]
     @beginning_time = Time.now
+    @save_form_on_difference = options[:save_form_on_difference]
   end
 
   def find_differences
@@ -147,6 +148,26 @@ class Analyzer
                                  case_report_value: case_report_value(field),
                                  export_value: record[field],
                                  url: visit_url(record, instrument))
+
+    save_form if @save_form_on_difference
+  end
+
+  def save_form
+    click_save
+
+    if successful_edit
+      @reporting.info_output("Record: #{record[0]} - #{instrument_name(instrument)} / #{record["redcap_event_name"]} / #{field} -- SUCCESSFULLY SAVED")
+    else
+      @reporting.error_output("Record: #{record[0]} - #{instrument_name(instrument)} / #{record["redcap_event_name"]} / #{field} -- SAVE ERROR!")
+    end
+  end
+
+  def click_save
+    Thread.current[:driver].button(name: "submit-btn-saverecord").click
+  end
+
+  def successful_edit
+    Thread.current[:driver].div(class: "darkgreen").text.include?("successfully edited")
   end
 
   def fields(instrument)
