@@ -149,10 +149,10 @@ class Analyzer
                                  export_value: record[field],
                                  url: visit_url(record, instrument))
 
-    save_form if @save_form_on_difference
+    save_form(record, instrument, field) if @save_form_on_difference
   end
 
-  def save_form
+  def save_form(record, instrument, field)
     click_save
 
     if successful_edit
