@@ -196,7 +196,14 @@ class Analyzer
 
   def visit_url(record, instrument)
     if @project.longitudinal
-      "#{@browser.redcap_url}/redcap_v#{@browser.redcap_version}/DataEntry/index.php?pid=#{@project.id}&id=#{record[0]}&page=#{instrument_name(instrument)}&event_id=#{@project.define_my_events[record["redcap_event_name"]][:id]}"
+
+      if @project.arms.count > 0
+        current_arm = record[1].split("_arm_")[1]
+        "#{@browser.redcap_url}/redcap_v#{@browser.redcap_version}/DataEntry/index.php?pid=#{@project.id}&id=#{record[0]}&arm=#{current_arm}&page=#{instrument_name(instrument)}&event_id=#{@project.define_my_events[record["redcap_event_name"]][:id]}"
+      else
+        "#{@browser.redcap_url}/redcap_v#{@browser.redcap_version}/DataEntry/index.php?pid=#{@project.id}&id=#{record[0]}&page=#{instrument_name(instrument)}&event_id=#{@project.define_my_events[record["redcap_event_name"]][:id]}"
+      end
+
     else
       "#{@browser.redcap_url}/redcap_v#{@browser.redcap_version}/DataEntry/index.php?pid=#{@project.id}&id=#{record[0]}&page=#{instrument_name(instrument)}"
     end
