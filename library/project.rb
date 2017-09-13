@@ -17,6 +17,8 @@ class Project
 
   attr_reader :define_my_events
 
+  attr_reader :arms
+
   def initialize(**options)
     @id = options[:id]
 
@@ -43,15 +45,16 @@ class Project
     @calc_fields = fetch_calc_fields
     @table = get_table
 
-    longitudinal_only_methods if @longitudinal
+    longitudinal_only_methods(options) if @longitudinal
 
     get_active_records
   end
 
   private
 
-  def longitudinal_only_methods
-    @event_form_table = get_event_form_table
+  def longitudinal_only_methods(options)
+    @arms = options[:arms]
+    @event_form_tables = get_event_form_tables
     get_events
     get_event_cols
   end

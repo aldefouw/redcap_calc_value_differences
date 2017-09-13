@@ -34,20 +34,40 @@ module Redcap712
     end
   end
 
-  def get_event_form_table
-    @agent.get("#{@browser.redcap_url}/redcap_v#{@browser.redcap_version}/Design/define_events.php?pid=#{@id}") do |page|
-      return page.parser.search('table')[1]
+  def get_event_form_tables
+    tables = []
+
+    @arms.each do |arm|
+      @agent.get("#{@browser.redcap_url}/redcap_v#{@browser.redcap_version}/Design/define_events.php?pid=#{@id}&arm=#{arm}") do |page|
+        tables << page.parser.search('table')[1]
+      end
     end
+
+    tables
   end
 
   def get_events
-    @event_form_table.search('tr').each_with_index do |tr, index|
-      if @event_form_table.search('tr').count != (index + 1) && index != 0
-        key = tr.search('td')[5].children.first.text
-        name = tr.search('td')[3].text
-        value = tr.attributes["id"].value.split("design_")[1]
-        @define_my_events[key] = { name: name, id: value }
+    @event_form_tables.each do |form_table|
+      tds = {}
+
+      form_table.search('tr[class=nodrop] > td').each_with_index do |td, index|
+        tds[td.text] = index
       end
+
+      name_index = tds["Event Name"]
+      key_index = tds["Event Name"] + 2
+
+      form_table.search('tr').each_with_index do |tr, index|
+        if form_table.search('tr').count != (index + 1) && index != 0
+
+          key = tr.search('td')[key_index].children.first.text
+          name = tr.search('td')[name_index].text
+          value = tr.attributes["id"].value.split("design_")[1]
+
+          @define_my_events[key] = { name: name, id: value }
+        end
+      end
+
     end
   end
 

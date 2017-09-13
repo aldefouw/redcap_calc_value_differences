@@ -4,6 +4,7 @@ class ExportData
     @path = options[:path]
     @base_dir = options[:base_dir]
     @project_id = options[:project_id]
+    @arms = arms
   end
 
   def data_file
@@ -46,6 +47,14 @@ class ExportData
 
   def longitudinal_project?
     data_cols.first.include?('redcap_event_name')
+  end
+
+  def arms
+    if longitudinal_project?
+      arms = []
+      event_form_cols.each { |row| arms << row[1] }
+      arms.uniq
+    end
   end
 
 end

@@ -33,7 +33,8 @@ class DifferenceDetector
 
     @browser = Browser.new(options)
 
-    @project = Project.new(
+
+    project_options = {
         base_dir: @base_dir,
         id: options[:project_id],
         data: @export_data.data_cols,
@@ -41,7 +42,13 @@ class DifferenceDetector
         data_dictionary: @export_data.data_dictionary_cols,
         longitudinal: @export_data.longitudinal_project?,
         browser: @browser
-    )
+    }
+
+    project_options = project_options.merge(arms: @export_data.arms) if @export_data.longitudinal_project?
+
+    @project = Project.new(project_options)
+
+
 
     @reporting = Reporting.new(options.merge(project: @project))
 
