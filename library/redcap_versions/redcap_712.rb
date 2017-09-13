@@ -67,17 +67,20 @@ module Redcap712
           @define_my_events[key] = { name: name, id: value }
         end
       end
-
     end
   end
 
   def get_event_cols
     event_row.search('th').each_with_index do |th, i|
       if th.attributes.key?("colspan")
+
+        current_text = th.text.split("(Arm 1")[0].strip
+        num_of_cols = th.attributes["colspan"].value
+
         @event_forms.each_with_index do |form, index|
           current_event = @define_my_events[form["unique_event_name"]]
-          if th.text == current_event[:name]
-            num_of_cols = th.attributes["colspan"].value
+
+          if current_text == current_event[:name]
             @event_cols[form["unique_event_name"]] = { cols: num_of_cols, name: current_event[:name] }
           end
         end
