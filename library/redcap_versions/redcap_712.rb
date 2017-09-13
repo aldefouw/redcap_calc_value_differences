@@ -13,7 +13,7 @@ module Redcap712
   end
 
   def record_id(tr)
-    tr.search('td')[0].text
+    tr.search('td > a').text
   end
 
   def minimum_row
