@@ -9,6 +9,7 @@ class Analyzer
     @path = options[:path]
     @reporting = options[:reporting]
     @beginning_time = Time.now
+    @save_form_on_difference = options[:save_form_on_difference]
   end
 
   def find_differences
@@ -147,6 +148,26 @@ class Analyzer
                                  case_report_value: case_report_value(field),
                                  export_value: record[field],
                                  url: visit_url(record, instrument))
+
+    save_form(record, instrument, field) if @save_form_on_difference
+  end
+
+  def save_form(record, instrument, field)
+    click_save
+
+    if successful_edit
+      @reporting.info_output("Record: #{record[0]} - #{instrument_name(instrument)} / #{record["redcap_event_name"]} / #{field} -- SUCCESSFULLY SAVED")
+    else
+      @reporting.error_output("Record: #{record[0]} - #{instrument_name(instrument)} / #{record["redcap_event_name"]} / #{field} -- SAVE ERROR!")
+    end
+  end
+
+  def click_save
+    Thread.current[:driver].button(name: "submit-btn-saverecord").click
+  end
+
+  def successful_edit
+    Thread.current[:driver].div(class: "darkgreen").text.include?("successfully edited")
   end
 
   def fields(instrument)
@@ -175,7 +196,14 @@ class Analyzer
 
   def visit_url(record, instrument)
     if @project.longitudinal
-      "#{@browser.redcap_url}/redcap_v#{@browser.redcap_version}/DataEntry/index.php?pid=#{@project.id}&id=#{record[0]}&page=#{instrument_name(instrument)}&event_id=#{@project.define_my_events[record["redcap_event_name"]][:id]}"
+
+      if @project.arms.count > 0
+        current_arm = record[1].split("_arm_")[1]
+        "#{@browser.redcap_url}/redcap_v#{@browser.redcap_version}/DataEntry/index.php?pid=#{@project.id}&id=#{record[0]}&arm=#{current_arm}&page=#{instrument_name(instrument)}&event_id=#{@project.define_my_events[record["redcap_event_name"]][:id]}"
+      else
+        "#{@browser.redcap_url}/redcap_v#{@browser.redcap_version}/DataEntry/index.php?pid=#{@project.id}&id=#{record[0]}&page=#{instrument_name(instrument)}&event_id=#{@project.define_my_events[record["redcap_event_name"]][:id]}"
+      end
+
     else
       "#{@browser.redcap_url}/redcap_v#{@browser.redcap_version}/DataEntry/index.php?pid=#{@project.id}&id=#{record[0]}&page=#{instrument_name(instrument)}"
     end

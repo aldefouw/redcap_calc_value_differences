@@ -24,6 +24,7 @@ class DifferenceDetector
     @project_id = options[:project_id]
     @path = "project_exports/#{@project_id}"
     @base_dir = Dir.getwd
+    @save_form_on_difference = options[:save_form_on_difference] || false
 
     options = options.merge(path: @path,
                             base_dir: @base_dir)
@@ -32,7 +33,8 @@ class DifferenceDetector
 
     @browser = Browser.new(options)
 
-    @project = Project.new(
+
+    project_options = {
         base_dir: @base_dir,
         id: options[:project_id],
         data: @export_data.data_cols,
@@ -40,7 +42,13 @@ class DifferenceDetector
         data_dictionary: @export_data.data_dictionary_cols,
         longitudinal: @export_data.longitudinal_project?,
         browser: @browser
-    )
+    }
+
+    project_options = project_options.merge(arms: @export_data.arms) if @export_data.longitudinal_project?
+
+    @project = Project.new(project_options)
+
+
 
     @reporting = Reporting.new(options.merge(project: @project))
 
@@ -48,7 +56,8 @@ class DifferenceDetector
                              browser: @browser,
                              reporting: @reporting,
                              project: @project,
-                             path: @path)
+                             path: @path,
+                             save_form_on_difference: @save_form_on_difference)
 
   end
 
