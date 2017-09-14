@@ -91,6 +91,14 @@ module Redcap712
 
     count = 0
 
+    @event_cols.each_with_index do |e, index|
+      e[1][:arm] = e[0].split("_arm_")[1].to_i
+      e[1][:index] = index
+    end
+
+    #Sort by the arm first and then the index (just like the table headers)
+    @event_cols = @event_cols.sort_by { |k|  [ k[1][:arm], k[1][:index] ] }
+
     @event_cols.each_with_index do |e, i|
       e[1][:forms] = []
       (0..number_of_cols(e)).each { |i| e[1][:forms] << { count = count + 1 => @instrument_mappings[count - 1] }  }
