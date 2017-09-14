@@ -95,7 +95,7 @@ module Redcap712
       end
     end
 
-    header.search('th').each { |th| @instrument_mappings << th.text.strip.downcase.parameterize.underscore }
+    header.search('th').each { |th| @instrument_mappings << th.text.strip.delete("'").downcase.parameterize.underscore }
 
     @event_cols.each_with_index do |e, index|
       e[1][:index] = index
@@ -156,8 +156,12 @@ module Redcap712
   def fetch_calc_fields
     f = {}
     @data_dictionary.each do |c|
-      f[c[1]] = [] unless f.key?(c[1])
-      f[c[1]].push c[0] if c[3] == "calc"
+      if f.key?(c[1]) && c[3] == "calc"
+        f[c[1]].push c[0]
+      elsif c[3] == "calc"
+        f[c[1]] = []
+        f[c[1]].push c[0]
+      end
     end
     f
   end
