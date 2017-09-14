@@ -120,7 +120,6 @@ class Analyzer
                            instrument: instrument,
                            field: field)
     else
-
       value_mismatch_response(record: record,
                               instrument: instrument,
                               field: field)
@@ -155,7 +154,7 @@ class Analyzer
   def save_form(record, instrument, field)
     click_save
 
-    if successful_edit
+    if successful_edit(record, instrument)
       @reporting.info_output("Record: #{record[0]} - #{instrument_name(instrument)} / #{record["redcap_event_name"]} / #{field} -- SUCCESSFULLY SAVED")
     else
       @reporting.error_output("Record: #{record[0]} - #{instrument_name(instrument)} / #{record["redcap_event_name"]} / #{field} -- SAVE ERROR!")
@@ -166,8 +165,9 @@ class Analyzer
     Thread.current[:driver].button(name: "submit-btn-saverecord").click
   end
 
-  def successful_edit
+  def successful_edit(record, instrument)
     Thread.current[:driver].div(class: "darkgreen").text.include?("successfully edited")
+    Thread.current[:driver].goto visit_url(record, instrument)
   end
 
   def fields(instrument)
