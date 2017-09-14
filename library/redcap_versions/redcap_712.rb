@@ -97,7 +97,7 @@ module Redcap712
     end
 
     #Sort by the arm first and then the index (just like the table headers)
-    @event_cols = @event_cols.sort_by { |k|  [ k[1][:arm], k[1][:index] ] }
+    @event_cols = @event_cols.sort_by { |k|  [ k[1][:arm], k[1][:index] ] }.to_h
 
     @event_cols.each_with_index do |e, i|
       e[1][:forms] = []
