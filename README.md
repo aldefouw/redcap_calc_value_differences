@@ -26,7 +26,24 @@ Something to keep in mind is that a difference between the respective values doe
 
 ## Data Resolution ##
 
-At this point, the tool does not correct any of the saved data that doesn't match the Case Report Form.  Dependent upon our feedback from PIs and other REDCap consortium members, we might add a feature to save the Case Report Form, however.  
+~~At this point, the tool does not correct any of the saved data that doesn't match the Case Report Form.  Dependent upon our feedback from PIs and other REDCap consortium members, we might add a feature to save the Case Report Form, however.~~
+
+The tool now offers the ability to resolve discrepancies in data by saving the Case Report Form when a discrepancy is identified.
+
+In your configuration, choose to set the "save_form_on_difference" to true.
+
+For instance:
+
+```
+detector = DifferenceDetector.new(redcap_url: url,
+                                   redcap_version: "7.1.2",
+                                   browser_options: options,
+                                   project_id: 1,
+                                   threads: 1,
+                                   save_form_on_difference: true)
+```
+
+**We recommend performing a "dry-run" (with this option set to false) before you save any of the forms.**
 
 ## Current Compatibility
 
