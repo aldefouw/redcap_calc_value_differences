@@ -74,8 +74,14 @@ module Redcap712
     event_row.search('th').each_with_index do |th, i|
       if th.attributes.key?("colspan")
 
-        current_text = th.text.split("(Arm ")[0].strip
-        current_arm = th.text.split("(Arm ")[1].split(":")[0].to_i
+        if @arms.count > 1
+          current_text = th.text.split("(Arm ")[0].strip
+          current_arm = th.text.split("(Arm ")[1].split(":")[0].to_i
+        else
+          current_text = th.text
+          current_arm = 1
+        end
+
         num_of_cols = th.attributes["colspan"].value.to_i
 
         @event_forms.each_with_index do |form, index|
@@ -104,9 +110,6 @@ module Redcap712
       e[1][:forms] = []
       (0..number_of_cols(e)).each { e[1][:forms] << { count = count + 1 => @instrument_mappings[count - 1] } }
     end
-
-    binding.pry
-
   end
 
   def find_active_records(id:, instrument:)
