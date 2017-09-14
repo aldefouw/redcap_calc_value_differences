@@ -7,6 +7,7 @@ require 'colorize'
 require 'nokogiri'
 require 'mechanize'
 require 'parallel'
+require 'highline'
 
 require "#{Dir.getwd}/library/browser"
 require "#{Dir.getwd}/library/project"
@@ -25,6 +26,8 @@ class DifferenceDetector
     @path = "project_exports/#{@project_id}"
     @base_dir = Dir.getwd
     @save_form_on_difference = options[:save_form_on_difference] || false
+
+    are_you_sure_you_want_to_save?
 
     options = options.merge(path: @path,
                             base_dir: @base_dir)
@@ -63,6 +66,20 @@ class DifferenceDetector
 
   def run
     @analyzer.find_differences
+  end
+
+  private
+
+  def are_you_sure_you_want_to_save?
+    if @save_form_on_difference
+      cli = HighLine.new
+      cli.choose do |menu|
+        menu.prompt = "Are you sure you want to save each Case Report Form that you encounter a dicrepant value for?  (NOTE: This is NOT easily reversible.)"
+        menu.choice("Yes")
+        menu.choices("No") { abort "Please change 'save_form_on_difference' to false and re-run this script." }
+        menu.default = "Yes"
+      end
+    end
   end
 
 end
