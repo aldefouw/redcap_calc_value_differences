@@ -74,7 +74,7 @@ class DifferenceDetector
     if @save_form_on_difference
       cli = HighLine.new
       cli.choose do |menu|
-        menu.prompt = "Are you sure you want to save each Case Report Form that you encounter a dicrepant value for?  (NOTE: This is NOT easily reversible.)"
+        menu.prompt = "Are you sure you want to save each Case Report Form that you encounter a discrepant value for?  (NOTE: This is NOT easily reversible.)"
         menu.choice("Yes")
         menu.choices("No") { abort "Please change 'save_form_on_difference' to false and re-run this script." }
         menu.default = "Yes"
